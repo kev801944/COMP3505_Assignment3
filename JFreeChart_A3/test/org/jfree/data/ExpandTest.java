@@ -23,6 +23,7 @@ class ExpandTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		exampleRange = new Range(2,6);
 	}
 
 	@AfterEach
@@ -30,20 +31,28 @@ class ExpandTest {
 	}
 
 	@Test
-	void testForProperRangeExpandValue() {
-		exampleRange = new Range(2,6);
+	void testForPositiveLowerAndUpperMargin() {
 		Range expected = new Range(1,8);
 		Range actual = Range.expand(exampleRange, 0.25, 0.5);
-			
+
 		assertEquals(expected, actual);
 	}
 	
 	
 	@Test
-	void testForNegativeValuesInLowerMargin() {
-		exampleRange = new Range(1,7);
-		Range x = Range.expand(exampleRange, -0.25, 0.5);
-		System.out.println(x.getLowerBound());
+	void testForNegativeValuesInLowerMargin() {		
+		Range expected = new Range(3,8);
+		Range actual = Range.expand(exampleRange, -0.25, 0.5);
+
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testForNegativeValuesInUpperMargin() {		
+		Range expected = new Range(1,4);
+		Range actual = Range.expand(exampleRange, 0.25, -0.5);
+
+		assertEquals(expected, actual);
 	}
 	
 	@Test

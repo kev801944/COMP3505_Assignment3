@@ -9,7 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CombineTest {
-	private Range exampleRange;
+	private Range testRange1;
+	private Range testRange2;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -21,6 +22,8 @@ class CombineTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		testRange1 = new Range(-1, 1);
+		testRange2 = new Range(0, 2);
 	}
 
 	@AfterEach
@@ -28,15 +31,22 @@ class CombineTest {
 	}
 
 	@Test
+	void testReturnProperRange() {
+		Range expected = new Range(-1, 2);
+		Range actual = Range.combine(testRange1, testRange2);
+
+		assertEquals(expected, actual);
+	}
+	
+	@Test
 	void testReturningNullIfBothRangesAreNull() {
 		assertNull(Range.combine(null, null));
 	}
 	
 	@Test
 	void testReturnFirstAgurmentRangeIfSecondRangeIsNull() {
-		exampleRange = new Range(-1, 1);
 		
-		Range actual = Range.combine(exampleRange, null);
+		Range actual = Range.combine(testRange1, null);
 		Range expected = new Range(-1,1);
 		
 		assertEquals(expected, actual);
@@ -44,10 +54,9 @@ class CombineTest {
 
 	@Test
 	void testReturnSecondAgurmentRangeIfFirstRangeIsNull() {
-		exampleRange = new Range(-1, 1);
 		
-		Range actual = Range.combine(null, exampleRange);
-		Range expected = new Range(-1,1);
+		Range actual = Range.combine(null, testRange2);
+		Range expected = new Range(0,2);
 		
 		assertEquals(expected, actual);
 	}

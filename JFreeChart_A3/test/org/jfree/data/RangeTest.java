@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RangeTest {
-	private Range exampleRange;
+  	private Range exampleRange;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

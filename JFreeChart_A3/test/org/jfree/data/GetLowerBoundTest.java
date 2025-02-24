@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class GetLowerBoundTest {
+	Range exampleRange;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -27,8 +28,21 @@ class GetLowerBoundTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testReturnNegativeLowerBound() {
+		exampleRange = new Range(-1.0,1.0);
+
+		double expected = -1.0;
+		double actual = exampleRange.getLowerBound();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testReturnPositiveLowerBound() {
+		exampleRange = new Range(1.0, 5.0);
+
+		double expected = 1.0;
+		double actual = exampleRange.getLowerBound();
+		assertEquals(expected, actual);
 	}
 
 }
